@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Submitted Data</title>
     <style>
         body {
@@ -21,8 +22,8 @@
             background-color: #fff;
             padding: 100px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             max-width: 900px;
+            border: 1px solid black ;
             width: 200%;
             text-align: left;
         }
@@ -43,11 +44,8 @@
         }
 
         .data-item span {
-            color: #333;
+            color: #4CAF50;
         }
-
-   
-
         
     </style>
 </head>
@@ -55,18 +53,22 @@
 
 <div class="container">
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        $name = htmlspecialchars($_GET['name']);
-        $message = htmlspecialchars($_GET['message']);
-        $email = htmlspecialchars($_GET['email']);
-        $phone = htmlspecialchars($_GET['phone']);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = htmlspecialchars($_POST['name']);
+        $message = htmlspecialchars($_POST['message']);
+        $email = htmlspecialchars($_POST['email']);
+        $phone = htmlspecialchars($_POST['phone']);
 
         echo "<h1>Thank you for contacting us</h1>";
-        echo "<a>We will be back in touch with you within one business day using the infomation you just provided below: </a>";
-        echo "<div class='data-item'>Name:<span class=''></span> " . $name . "</div>";
-        echo "<div class='data-item'>Phone:<span class=''></span> " . $phone . "</div>";
-        echo "<div class='data-item'>Email:<span></span> " . $email . "</div>";
-        echo "<div class='data-item'>Message:<span></span> " . $message . "</div>";
+        echo "<a >We will be back in touch with you within one business day using the infomation you just provided below: </a>";
+
+        echo "<dl class='row'> <dt class='col-3'>Name:</dt> <dd class='col-sm-5'>" . $name . "</dd>  </dl>  ";
+        echo "<dl class='row'> <dt class='col-sm-3 font-size-100px'>Phone:</dt> <dd class='col-sm-5'>" . $phone . "</dd>  </dl>  ";
+        echo "<dl class='row'> <dt class='col-sm-3'>Email address:</dt> <dd class='col-sm-5'>" . $email . "</dd>  </dl>  ";
+        echo "<dl class='row'> <dt class='col-sm-3'>Message:</dt> <dd class='col-sm-5'>" . $message . "</dd>  </dl>  ";
+
+
+
     } else {
         echo "<h2>No Data Submitted</h2>";
     }
